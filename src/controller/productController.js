@@ -25,7 +25,7 @@ async function sendProducts(req,res){
          }
           
            if(categoryVal){ 
-             filter.category = category:{$regex:categoryVal, $options:'i'};
+             filter.category ={$regex:categoryVal, $options:'i'};
                 
            } 
         
