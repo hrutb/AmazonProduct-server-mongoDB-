@@ -29,7 +29,7 @@ async function sendProducts(req,res){
                 
            } 
         
-      let products  = await Product.find();
+      let products  = await Product.find(filter).sort({createdAt:-1}).skip(skip).limit(limit);
          res.status(200).json({ 
                 success:true,
                 data:products,
