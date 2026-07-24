@@ -80,7 +80,7 @@ async function createProduct(req,res){
      })
      
    }catch(e){ 
-            if(e.errors==="ValidationError"){ 
+            if(e.name==="ValidationError"){ 
                  res.status(400).json({ 
                       success:false,
                        message:'Validation failed',
