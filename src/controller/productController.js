@@ -9,8 +9,8 @@ async function sendProducts(req,res){
 
     try{ 
       // QueryParams
-       const searchVal = req.query.search || ""; 
-       const categoryVal = req.query.category|| '';        
+       const searchVal = req.query.search  || ""; 
+       const categoryVal = req.query.category || '';        
       
       //  server side pagignation
         const page = parseInt(req.query.page)|| 1;
@@ -80,7 +80,7 @@ async function createProduct(req,res){
      })
      
    }catch(e){ 
-            if(e.errors==="validatorError"){ 
+            if(e.errors==="ValidationError"){ 
                  res.status(400).json({ 
                       success:false,
                        message:'Validation failed',

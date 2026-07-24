@@ -4,7 +4,7 @@
     "express": "^5.2.1",
     "mongoose": "^9.8.0"
   },
-  "start":{
+  "scripts":{
       "start":"node server.js",
       "dev":"nodemon server.js",
       "debug":"node --inspect server.js"
