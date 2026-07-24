@@ -10,7 +10,7 @@ async function sendProducts(req,res){
     try{ 
       // QueryParams
        const searchVal = req.query.search || ""; 
-       const authorVal = req.query.auther || '';        
+       const categoryVal = req.query.category|| '';        
       
       //  server side pagignation
         const page = parseInt(req.query.page)|| 1;
@@ -24,8 +24,8 @@ async function sendProducts(req,res){
              filter.name ={ name:{$regex:searchVal, $options:'i'}};
          }
           
-           if(authorVal){ 
-             filter.category ={ category:{$regex:authorVal, $options:'i'}};
+           if(categoryVal){ 
+             filter.category ={ category:{$regex:categoryVal, $options:'i'}};
                 
            } 
         
