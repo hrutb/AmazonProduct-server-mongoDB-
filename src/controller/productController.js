@@ -67,7 +67,8 @@ async function sendProductById(req,res){
 }
 
 async function createProduct(req,res){
-          
+
+
    try{  
          
 
@@ -79,10 +80,10 @@ async function createProduct(req,res){
      })
      
    }catch(e){ 
-            if(e.errors==="validationError"){ 
+            if(e.errors==="validatorError"){ 
                  res.status(400).json({ 
                       success:false,
-                       message:'validation failed',
+                       message:'Validation failed',
                        error:Object.values(e.errors).map(err=>err.message) // this will give me the new array of different errors
                    })
             }    
