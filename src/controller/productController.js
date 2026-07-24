@@ -9,7 +9,7 @@ async function sendProducts(req,res){
 
     try{ 
       // QueryParams
-       const searchVal = req.query.search  || ""; 
+       const searchVal = req.query.name  || ""; 
        const categoryVal = req.query.category || '';        
       
       //  server side pagignation
