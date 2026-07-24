@@ -21,11 +21,11 @@ async function sendProducts(req,res){
          let filter ={} 
 
          if(searchVal){ 
-             filter.name ={ name:{$regex:searchVal, $options:'i'}};
+             filter.name ={$regex:searchVal, $options:'i'};
          }
           
            if(categoryVal){ 
-             filter.category ={ category:{$regex:categoryVal, $options:'i'}};
+             filter.category = category:{$regex:categoryVal, $options:'i'};
                 
            } 
         
