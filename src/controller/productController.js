@@ -11,7 +11,7 @@ async function sendProducts(req,res){
       // QueryParams
        const searchVal = req.query.name  || ""; 
        const categoryVal = req.query.category || '';        
-      
+    
       //  server side pagignation
         const page = parseInt(req.query.page)|| 1;
         const limit  =parseInt(req.query.limit)||10; 
@@ -96,10 +96,85 @@ async function createProduct(req,res){
 
 
 
+async function deleteProduct(req,res){ 
+     const {id}  = req.params.id;           
+
+         try { 
+          let deleteProduct = await Product.findByIdAndDelete(id); 
+ 
+             if(!product){ 
+                   res.status(404).json({ 
+                          success:false,
+                          message:"Product not found",
+                  })
+             }             
+          res.status(200).json({ 
+               success:true,
+               message:"deleted successfully",
+               data: deleteProduct        
+          })
+
+        }catch(err){ 
+         
+            res.status(500).json({ 
+                  success:false,
+                  message:'Internal server Error'     
+             })
+        }
+}
+
+
+
+
+
+async function updateProduct(req,res){
+           try{ 
+             let updateProduct = await Product.findByIdAndUpdate(
+                                  id,
+                                  req.body,
+                                  { 
+                                    new:true, // return the  updateed document, not old one 
+                                    runValidators:tur // enforce schema validation on update
+
+                                  }
+                                ); 
+                
+               if(!updateProduct){ 
+                   res.status(404).json({ 
+                        success:false,
+                        mesasge:'Product not found'
+                     })
+                }                  
+                   res.status(200).json({ 
+                        success:true,
+                        message:'Product updated successfully',
+                        data:updateProduct       
+                   })
+
+
+           }catch(e){ 
+               if(e.name==="ValidationError"){ 
+                   res.status(404).json({ 
+                        success:false,
+                        message:"Validation Error",
+                        error:Object.values(e.errors).map(err=>err.message)
+                     })   
+                }
+
+
+              res.status(500).json({ 
+                  success:false,
+                  message:'Internal server Error', 
+                })   
+           }
+}
+
 
 
 
 
 module.exports = { 
-         sendProducts,sendProductById,createProduct
-}
+         sendProducts,sendProductById,createProduct,
+         deleteProduct
+        
+        }
